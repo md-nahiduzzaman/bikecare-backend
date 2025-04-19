@@ -37,8 +37,33 @@ const getSingleCustomer = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+// update single customer by id
+const updateSingleCustomer = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const result = await customerService.updateSingleCustomer(id, req.body);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Customer updated successfully",
+    data: result,
+  });
+});
+
+// delete single customer by id
+const deleteSingleCustomer = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const result = await customerService.deleteSingleCustomer(id);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Customer deleted successfully",
+  });
+});
+
 export const customerController = {
   createCustomer,
   getAllCustomers,
   getSingleCustomer,
+  updateSingleCustomer,
+  deleteSingleCustomer,
 };

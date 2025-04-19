@@ -1,7 +1,12 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import router from "./app/routers";
+import globalErrorHandler from "./app/middlewares/globalErrorHandler";
+import dotenv from "dotenv";
+import httpStatus from "http-status";
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -17,5 +22,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1", router);
+app.use(globalErrorHandler);
 
 export default app;

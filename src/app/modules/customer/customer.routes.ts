@@ -3,8 +3,10 @@ import { customerController } from "./customer.controller";
 
 const route = express.Router();
 
-route.post("/", customerController.createCustomer); // Create customer
-route.get("/", customerController.getAllCustomers); // Get all customers
-route.get("/:id", customerController.getSingleCustomer); // Get single customer by id
+route.post("/", customerController.createCustomer);
+route.get("/", customerController.getAllCustomers);
+route.get("/:id", customerController.getSingleCustomer);
+route.put("/:id", customerController.updateSingleCustomer);
+route.delete("/:id", customerController.deleteSingleCustomer);
 
 export const customerRouters = route;

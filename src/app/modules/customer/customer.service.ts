@@ -1,3 +1,4 @@
+import { TCustomError } from "../../middlewares/globalErrorHandler";
 import prisma from "../../utils/prisma";
 import { TCustomer } from "./customer.interface";
 
@@ -18,17 +19,30 @@ const getSingleCustomer = async (id: string) => {
   const result = await prisma.customer.findUnique({
     where: { customerId: id },
   });
+  if (!result) {
+    const error = new Error("Customer not found") as TCustomError;
+    error.name = "NotFoundError";
+    error.status = 404;
+    throw error;
+  }
   return result;
 };
 
 // update single customer by id
-const updateSingleCustomer = async (id: string) => {
-  console.log("updateSingleCustomer", id);
+const updateSingleCustomer = async (id: string, payload: any) => {
+  const result = await prisma.customer.update({
+    where: { customerId: id },
+    data: payload,
+  });
+  return result;
 };
 
 // delete single customer by id
 const deleteSingleCustomer = async (id: string) => {
-  console.log("deleteSingleCustomer", id);
+  const result = await prisma.customer.delete({
+    where: { customerId: id },
+  });
+  return result;
 };
 
 export const customerService = {
