@@ -169,7 +169,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma",
@@ -183,7 +183,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://postgres:postgres@localhost:5432/bikecare_db?schema=public"
+        "value": "postgresql://bikecare_backend_user:dm9plbDwNKrLOMqP31YteeaLPmUd93zM@dpg-d03jbkbe5dus73absc70-a.oregon-postgres.render.com/bikecare_backend"
       }
     }
   },

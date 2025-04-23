@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/api/v1", router);
+app.use("/api", router);
 app.use(globalErrorHandler);
 
 export default app;
